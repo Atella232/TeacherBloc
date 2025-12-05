@@ -1,32 +1,117 @@
+
 <!DOCTYPE html>
 <html lang="eu">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="https://lucide.dev/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TeacherMate MVP</title>
+    <title>TeacherMate Aesthetic</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Patrick+Hand&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
+        darkMode: 'class',
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
+              sans: ['Quicksand', 'sans-serif'],
+              body: ['Inter', 'sans-serif'],
+              hand: ['Patrick Hand', 'cursive'],
             },
             colors: {
-              primary: {
-                50: '#eff6ff',
-                100: '#dbeafe',
-                500: '#3b82f6',
-                600: '#2563eb',
-                700: '#1d4ed8',
+              paper: '#fdfbf7',
+              water: {
+                blue: '#a5b4fc', // Indigo 300
+                purple: '#d8b4fe', // Purple 300
+                pink: '#fca5a5', // Red 300
+                teal: '#99f6e4', // Teal 200
+                yellow: '#fde68a', // Amber 200
               }
+            },
+            backgroundImage: {
+              'watercolor-blue': 'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)',
+              'watercolor-peach': 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
+              'watercolor-green': 'linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)',
             }
           }
         }
       }
     </script>
+    <style>
+      body {
+        background-color: #fdfbf7;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        transition: background-color 0.3s ease;
+      }
+      
+      .dark body {
+        background-color: #0f172a; /* Slate 900 */
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+      }
+
+      /* Prevent text selection globally but allow on inputs */
+      body {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: default;
+      }
+      
+      input, textarea, [contenteditable] {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+        cursor: text;
+      }
+
+      /* Custom scrollbar for soft feel */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 10px;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: #475569;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+      
+      /* Glassmorphism Classes */
+      .glass {
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+      
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+      }
+
+      /* Dark Mode Overrides for Glass */
+      .dark .glass {
+        background: rgba(15, 23, 42, 0.65); /* Slate 900 with opacity */
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      
+      .dark .glass-panel {
+        background: rgba(30, 41, 59, 0.7); /* Slate 800 with opacity */
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+    </style>
   <script type="importmap">
 {
   "imports": {
@@ -39,8 +124,11 @@
   }
 }
 </script>
-  <body class="bg-slate-50 text-slate-900 antialiased">
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="text-slate-700 dark:text-slate-200 antialiased selection:bg-purple-200 selection:text-purple-900 transition-colors duration-300">
     <div id="root"></div>
     <script type="module" src="./index.tsx"></script>
-  </body>
+  <script type="module" src="/index.tsx"></script>
+</body>
 </html>
